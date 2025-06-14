@@ -26,13 +26,18 @@ public class ResultVO {
         return result;
     }
 
+    public static ResultVO error( String msg) {
+        ResultVO result = new ResultVO();
+        result.setCode("500");
+        result.setMsg(msg);
+        return result;
+    }
     public static ResultVO error(int i, String msg) {
         ResultVO result = new ResultVO();
         result.setCode("500");
         result.setMsg(msg);
         return result;
     }
-
     public static ResultVO authError() {
         ResultVO result = new ResultVO();
         result.setCode("401");
