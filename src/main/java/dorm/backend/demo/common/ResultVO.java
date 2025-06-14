@@ -26,7 +26,7 @@ public class ResultVO {
         return result;
     }
 
-    public static ResultVO error(String msg) {
+    public static ResultVO error(int i, String msg) {
         ResultVO result = new ResultVO();
         result.setCode("500");
         result.setMsg(msg);

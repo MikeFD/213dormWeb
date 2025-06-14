@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="io.swagger.v3.oas.annotations.Operation" />
+      <item index="1" class="java.lang.String" itemvalue="io.swagger.v3.oas.annotations.security.SecurityRequirement" />
+    </list>
+    <writeAnnotations>
+      <writeAnnotation name="jakarta.annotation.Resource" />
+    </writeAnnotations>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -8,4 +17,5 @@
       </list>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="21" project-jdk-type="JavaSDK" />
 </project>
