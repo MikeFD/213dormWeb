@@ -62,11 +62,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 JwtAuthenticationToken authentication = new JwtAuthenticationToken(user, token, authorities);
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                // 新增：将用户信息设置到request属性中
-                request.setAttribute("userId", username);
-                request.setAttribute("userRoles", rolesString);
-
             }catch (JwtException e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType("application/json");
