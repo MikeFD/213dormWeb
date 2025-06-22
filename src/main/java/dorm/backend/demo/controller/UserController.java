@@ -27,10 +27,10 @@ public class UserController {
     @Operation(summary = "更新用户名", description = "修改当前登录用户的用户名")
     @PutMapping("/update-username")
     public ResultVO updateUsername(
-            @RequestBody Map<String, String> request,
+            @RequestBody String username,
             @AuthenticationPrincipal User user) {
 
-        String newUsername = request.get("newUsername");
+        String newUsername = username;
         userMapper.updateUsername(user.getUserId(), newUsername);
         user.setUsername(newUsername); // 更新当前用户对象的用户名
         return ResultVO.success("用户名更新成功");
