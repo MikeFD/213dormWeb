@@ -18,7 +18,7 @@ public class webConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")  // 只开放 API 路径
+        registry.addMapping("/**")  // 只开放 API 路径
                 .allowedOrigins("http://localhost:8081", "http://127.0.0.1:8081") // 明确指定前端地址
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
