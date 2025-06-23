@@ -3,6 +3,8 @@ package dorm.backend.demo.mapper;
 import dorm.backend.demo.entity.Duty;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface DutyMapper {
     @Insert("INSERT INTO duty_schedule(date, duty_person, duty_content, create_by) " +
@@ -23,4 +25,11 @@ public interface DutyMapper {
             "FROM duty_schedule " +
             "WHERE date = #{date}")
     Duty getDutyByDate(Integer date);
+
+    @Select("SELECT " +
+            "date AS date, " +
+            "duty_person AS dutyPerson, " +
+            "duty_content AS dutyContent " +
+            "FROM duty_schedule ")
+    List<Duty> getAllDuty();
 }
