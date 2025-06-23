@@ -21,7 +21,7 @@ public class RegisterController {
     public ResultVO register(@RequestBody RegisterDTO dto) {
         try {
             User user = userService.register(dto);
-            return ResultVO.successWithGeneric(new RegisterVO(user.getUserId(), user.getUsername()));
+            return ResultVO.success(new RegisterVO(user.getUserId(), user.getUsername()));
         } catch (BusinessException e) {
             // 处理业务异常
             return ResultVO.error(e.getMessage());

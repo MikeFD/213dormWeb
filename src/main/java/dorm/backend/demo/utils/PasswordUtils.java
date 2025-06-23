@@ -1,12 +1,14 @@
 package dorm.backend.demo.utils;
 
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 /**
  * 功能：加密工具
  * 作者：GreenT
  * @method encrypt checkPassword
  */
+@Component
 public class PasswordUtils {
     private Argon2PasswordEncoder encoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     /**

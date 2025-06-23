@@ -8,9 +8,8 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface LoginMapper {
 
-    @Select("SELECT * FROM users WHERE username = #{username} AND password_hash = #{password}")
+    @Select("SELECT user_id as userId, username, password_hash as password, user_role as userRole, avatar_url as avatar FROM users WHERE username = #{username}")
     User findUserByCredentials(
-            @Param("username") String username,
-            @Param("password") String password
+            @Param("username") String username
     );
 }
