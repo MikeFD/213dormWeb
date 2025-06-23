@@ -12,6 +12,8 @@ import jakarta.annotation.Resource;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/duty")
@@ -60,5 +62,14 @@ public class DutyController {
         } else {
             return ResultVO.error(404, "未找到该日期的值日信息");
         }
+    }
+
+    @Operation(summary = "获取所有值日信息", description = "直接一窝蜂获取完完")
+    @GetMapping("/get-all-duty")
+    public ResultVO getAllDuty(@AuthenticationPrincipal User user) {
+
+        List<Duty> duty = dutyMapper.getAllDuty();
+
+        return ResultVO.success(duty);
     }
 }
