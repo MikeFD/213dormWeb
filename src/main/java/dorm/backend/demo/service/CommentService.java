@@ -3,8 +3,10 @@ package dorm.backend.demo.service;
 import dorm.backend.demo.dtos.CommentRequestDTO;
 import dorm.backend.demo.dtos.CommentResponseDTO;
 import dorm.backend.demo.entity.Comment;
+import dorm.backend.demo.entity.User;
 import dorm.backend.demo.mapper.CommentMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,9 +19,9 @@ public class CommentService {
     private final CommentMapper commentMapper;
 
     @Transactional
-    public CommentResponseDTO addComment(CommentRequestDTO request, HttpServletRequest httpRequest) {
+    public CommentResponseDTO addComment(CommentRequestDTO request, User user) {
         // 从请求属性中获取用户信息
-        String userId = (String) httpRequest.getAttribute("userId");
+        String userId = user.getUserId();
 
         if (userId == null) {
             throw new RuntimeException("未找到用户信息");
@@ -37,7 +39,6 @@ public class CommentService {
         Comment comment = Comment.builder()
                 .content(request.getContent())
                 .commentBy(userId)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         // 持久化到数据库
@@ -45,11 +46,8 @@ public class CommentService {
 
         // 构建响应DTO
         return CommentResponseDTO.builder()
-                .commentId(comment.getCommentId())
                 .content(comment.getContent())
                 .commentBy(comment.getCommentBy())
-                .createTime(comment.getCreatedAt()
-                        .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                 .build();
     }
 }

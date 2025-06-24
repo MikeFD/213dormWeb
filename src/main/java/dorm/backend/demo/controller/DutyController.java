@@ -27,7 +27,7 @@ public class DutyController {
     @PutMapping("/update")
     public ResultVO updateDuty(@RequestBody Duty duty, @AuthenticationPrincipal User user) {
         // 获取当前用户名
-        String username = user.getUsername();
+        String userId = user.getUserId();
 
         // 验证星期范围 (1-7)
         if (duty.getDate() < 1 || duty.getDate() > 7) {
@@ -39,11 +39,11 @@ public class DutyController {
 
         if (existingDuty != null) {
             // 更新现有记录（传入username）
-            dutyMapper.updateDuty(duty, username);
+            dutyMapper.updateDuty(duty, userId);
             return ResultVO.success("值日信息更新成功");
         } else {
             // 插入新记录（传入username）
-            dutyMapper.insertDuty(duty, username);
+            dutyMapper.insertDuty(duty, userId);
             return ResultVO.success("值日信息创建成功");
         }
     }

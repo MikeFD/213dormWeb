@@ -7,9 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface DutyMapper {
-    @Insert("INSERT INTO duty_schedule(date, duty_person, duty_content, create_by) " +
-            "VALUES(#{duty.date}, #{duty.dutyPerson}, #{duty.dutyContent}, #{username})")
-    void insertDuty(@Param("duty") Duty duty, @Param("username") String username);
+    @Insert("INSERT INTO duty_schedule(date, duty_person, duty_content, modified_by) " +
+            "VALUES(#{duty.date}, #{duty.dutyPerson}, #{duty.dutyContent}, #{userId})")
+    void insertDuty(@Param("duty") Duty duty, @Param("userId") String userId);
 
     @Update("UPDATE duty_schedule SET " +
             "duty_person = #{duty.dutyPerson}, " +
